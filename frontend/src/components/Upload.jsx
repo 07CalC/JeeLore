@@ -46,7 +46,7 @@ export const Upload = () => {
         };
         reader.readAsDataURL(img);
       }
-    } catch (error) {}
+    } catch (error) { }
   };
 
   const pasteSoln = async () => {
@@ -60,14 +60,14 @@ export const Upload = () => {
         };
         reader.readAsDataURL(img);
       }
-    } catch (error) {}
+    } catch (error) { }
   };
 
- 
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     setIsLoading(true);
-    const res = await fetch(`https://backend.jeelore.site/api/qsn/post`, {
+    const res = await fetch(`/api/qsn/post`, {
       method: "POST",
       credentials: "include",
       headers: {

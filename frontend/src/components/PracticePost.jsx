@@ -1,7 +1,5 @@
 import { useContext, useEffect, useState } from "react";
 import { AllContext } from "../../context/contex.jsx";
-import { PostCard } from "./PostCard.jsx";
-import { Skeleton } from "./Skeleton.jsx";
 import { PracticePostCard } from "./Practice.jsx";
 
 export const PracticePost = (props) => {
@@ -13,7 +11,7 @@ export const PracticePost = (props) => {
     props;
 
   const getQsnNumber = async () => {
-    const res = await fetch(`https://backend.jeelore.site/api/qsn/countQsns`, {
+    const res = await fetch(`/api/qsn/countQsns`, {
       method: "POST",
       credentials: "include",
       headers: {
@@ -50,7 +48,7 @@ export const PracticePost = (props) => {
 
   return (
     <div className=" w-full z-0 container flex  flex-col h-full overflow-y-auto items-center  ">
-     {
+      {
         posts.map((post) => (
           <PracticePostCard
             id={post._id}
@@ -71,8 +69,8 @@ export const PracticePost = (props) => {
             totalPages={totalPages}
           />
         ))
-      
-}
+
+      }
     </div>
   );
 };

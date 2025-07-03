@@ -1,8 +1,8 @@
 
 
 export const NoOfUpvotes = async (id) => {
-   try {
-    const res = await fetch(`https://backend.jeelore.site/api/qsn/getNoOfUpvotes`, {
+  try {
+    const res = await fetch(`/api/qsn/getNoOfUpvotes`, {
       method: "POST",
       credentials: "include",
       headers: {
@@ -14,9 +14,9 @@ export const NoOfUpvotes = async (id) => {
     })
     const data = await res.json()
     return data
-   
-   } catch (error) {
-    
-   }
+
+  } catch (error) {
+
+  }
 
 }

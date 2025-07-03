@@ -41,7 +41,7 @@ export const PostCard = (props) => {
   const canDel = postedBy === userId;
 
   const handleDelete = async () => {
-    const res = await fetch(`https://backend.jeelore.site/api/qsn/deleteQsn`, {
+    const res = await fetch(`/api/qsn/deleteQsn`, {
       credentials: "include",
       method: "POST",
       headers: {
@@ -121,14 +121,14 @@ export const PostCard = (props) => {
           <div className="lg:ml-4 ml-2 flex mt-2 h-fit w-fit items-center border border-accent rounded-xl">
             <div
               onClick={() => {
-                if(auth.isLoggedIn){
+                if (auth.isLoggedIn) {
                   setIsUpvoted(!isUpvote);
                   upvote(id);
-                  setNoOfUpvotes(isUpvote?noOfUpvotes-1:noOfUpvotes+1);
+                  setNoOfUpvotes(isUpvote ? noOfUpvotes - 1 : noOfUpvotes + 1);
                 }
-                else if(!auth.isLoggedIn){
+                else if (!auth.isLoggedIn) {
                   toast("Login to upvote");
-                  
+
                 }
               }}
               className={`flex items-center justify-center border-r border-accent cursor-pointer rounded-l-xl hover:bg-base-200`}
@@ -188,7 +188,7 @@ export const PostCard = (props) => {
           </div>
         </div>
       </div>
-      {showSoln && <UploadSoluton id={id} type={type} answer={answer}/>}
+      {showSoln && <UploadSoluton id={id} type={type} answer={answer} />}
       {showComments && (
         <>
           <div className="flex justify-center items-center">

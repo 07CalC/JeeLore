@@ -42,7 +42,7 @@ export const Signup = () => {
 
     setIsLoading(true);
     try {
-      const res = await fetch(`https://backend.jeelore.site/api/auth/signup`, {
+      const res = await fetch(`/api/auth/signup`, {
         method: "POST",
         credentials: "include",
         withCredentials: true,
@@ -76,7 +76,7 @@ export const Signup = () => {
         setIsLoading(false);
       }
       setIsLoading(false);
-    } catch (error) {}
+    } catch (error) { }
   };
 
   return (

@@ -9,28 +9,28 @@ export const Post = (props) => {
   const [currPage, setCurrPage] = useState(1);
   const [posts, setPosts] = useState([]);
   const [numberOfQsn, setNumberOfQsn] = useState(0);
-  const {diffFilters, subFilters, typeFilters,status,limit} = props;
-  const [totalPages, setTotalPages] = useState(Math.ceil(numberOfQsn/limit +1));
+  const { diffFilters, subFilters, typeFilters, status, limit } = props;
+  const [totalPages, setTotalPages] = useState(Math.ceil(numberOfQsn / limit + 1));
   const [reloadPost, setReloadPost] = useState(false);
-  const topicFilters = mathsTopics.concat(physicsTopics, chemistryTopics,biologyTopics);
+  const topicFilters = mathsTopics.concat(physicsTopics, chemistryTopics, biologyTopics);
 
   const getQsnNumber = async () => {
-    const res = await fetch(`https://backend.jeelore.site/api/qsn/countQsns`, {
+    const res = await fetch(`/api/qsn/countQsns`, {
       method: "POST",
       credentials: "include",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({subject:subFilters, difficulty:diffFilters, type:typeFilters, status:status,topic:topicFilters}),
+      body: JSON.stringify({ subject: subFilters, difficulty: diffFilters, type: typeFilters, status: status, topic: topicFilters }),
     });
     const data = await res.json();
     setNumberOfQsn(data);
-  
+
   };
 
 
   useEffect(() => {
-    const res = Context.getPosts((currPage - 1) * limit, limit, subFilters, diffFilters, typeFilters,status, topicFilters).then((data) =>
+    const res = Context.getPosts((currPage - 1) * limit, limit, subFilters, diffFilters, typeFilters, status, topicFilters).then((data) =>
       setPosts(data)
     );
     getQsnNumber(subFilters, diffFilters, typeFilters);
@@ -39,7 +39,7 @@ export const Post = (props) => {
   return (
     <div className="w-11/12 z-0 container flex  flex-col h-full overflow-y-auto items-center  ">
       {!Context.isLoading && !posts.error ? (
-         posts.map((post, index) => (
+        posts.map((post, index) => (
           <PostCard
             id={post._id}
             key={post._id}
@@ -58,7 +58,7 @@ export const Post = (props) => {
         ))
       ) : (
         <div className="text-3xl w-full font-bold justify-center mt-10 items-center text-center">
-          <Skeleton  /> 
+          <Skeleton />
         </div>
       )}
       <div className="w-full mt-5 lg:mt-10 flex bottom-0 justify-center">

@@ -9,7 +9,7 @@ export const ProfilePosts = (props) => {
 
   const getPosts = async () => {
     try {
-      const res = await fetch(`https://backend.jeelore.site/api/qsn/getUserPost`, {
+      const res = await fetch(`/api/qsn/getUserPost`, {
         method: "POST",
         credentials: "include",
         headers: {
@@ -17,7 +17,7 @@ export const ProfilePosts = (props) => {
         },
         body: JSON.stringify({
           id: auth.auth._id,
-          status: whatToShow==="Solved" ? "Solved" : "Unsolved"
+          status: whatToShow === "Solved" ? "Solved" : "Unsolved"
         })
       });
       const data = await res.json();
@@ -32,14 +32,14 @@ export const ProfilePosts = (props) => {
     getPosts();
   }, [auth.auth._id, whatToShow]);
 
-  return(
+  return (
     <div className="flex flex-col justify-start ">
       <div className="flex self-start">
-      <div className="flex self-start">
-        <p onClick={() => setWhatToShow("Solved")} className={`mx-2 text-xl font-bold cursor-pointer ${whatToShow==="Solved" ? "underline" : ""}`}>Solved</p>
-        <p onClick={() => setWhatToShow("Unsolved")} className={`mx-2 text-xl font-bold cursor-pointer ${whatToShow==="Unsolved" ? "underline" : ""}`}>Unsolved</p>
-      </div>
-      
+        <div className="flex self-start">
+          <p onClick={() => setWhatToShow("Solved")} className={`mx-2 text-xl font-bold cursor-pointer ${whatToShow === "Solved" ? "underline" : ""}`}>Solved</p>
+          <p onClick={() => setWhatToShow("Unsolved")} className={`mx-2 text-xl font-bold cursor-pointer ${whatToShow === "Unsolved" ? "underline" : ""}`}>Unsolved</p>
+        </div>
+
       </div>
     </div>
   )

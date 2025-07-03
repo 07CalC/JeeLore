@@ -11,13 +11,13 @@ export const Navbar = () => {
   const [isLoading, setIsLoading] = useState(false);
   const handleLogout = async () => {
     setIsLoading(true);
-    const res = await fetch(`https://backend.jeelore.site/api/auth/logout`, {
+    const res = await fetch(`/api/auth/logout`, {
       credentials: "include",
       method: "GET",
     });
 
     if (res.ok) {
-      Cookies.remove("token", {path: '/'});
+      Cookies.remove("token", { path: '/' });
       Context.setIsLoggedIn(false);
       setIsLoading(false);
       toast("Logged out successfully");
@@ -73,7 +73,7 @@ export const Navbar = () => {
 
             {!Context.isLoggedIn && (
               <>
-                
+
                 <li className="text-xl font-bold">
                   <NavLink to="/signup" className="text-xl font-bold nav-item">
                     SignUp
@@ -125,7 +125,7 @@ export const Navbar = () => {
 
             </ul>
           </div>
-          {Context.isLoggedIn ?  (
+          {Context.isLoggedIn ? (
             <div className="dropdown dropdown-end">
               <div
                 tabIndex={0}
@@ -155,25 +155,25 @@ export const Navbar = () => {
                 </li>
               </ul>
             </div>
-          ): (<div>
+          ) : (<div>
             <ul className="flex">
-            <li className="text-xl font-bold">
-                    <NavLink
-                      to="/signin"
-                      className="mr-2 text-xl font-bold nav-item"
-                    >
-                      SignIn
-                    </NavLink>
-                  </li>
-                  <li className=" ml-2 text-xl hidden lg:flex font-bold">
-                    <NavLink
-                      to="/signup"
-                      className=" text-xl font-bold nav-item"
-                    >
-                      SignUp
-                    </NavLink>
-                  </li>
-                  
+              <li className="text-xl font-bold">
+                <NavLink
+                  to="/signin"
+                  className="mr-2 text-xl font-bold nav-item"
+                >
+                  SignIn
+                </NavLink>
+              </li>
+              <li className=" ml-2 text-xl hidden lg:flex font-bold">
+                <NavLink
+                  to="/signup"
+                  className=" text-xl font-bold nav-item"
+                >
+                  SignUp
+                </NavLink>
+              </li>
+
             </ul>
           </div>)}
         </div>

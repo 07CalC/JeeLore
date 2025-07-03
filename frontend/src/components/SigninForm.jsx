@@ -24,7 +24,7 @@ export const Signin = () => {
     event.preventDefault();
     setIsLoading(true);
     try {
-      const res = await fetch(`https://backend.jeelore.site/api/auth/signin`, {
+      const res = await fetch(`/api/auth/signin`, {
         method: "POST",
         credentials: "include",
         headers: {
@@ -51,7 +51,7 @@ export const Signin = () => {
       }
       setIsLoading(false);
       return res_data;
-    } catch (error) {}
+    } catch (error) { }
   };
   console.log(userData);
 
@@ -97,22 +97,22 @@ export const Signin = () => {
                 </label>
               </div>
               <div className="mt-2">
-              <label className="input border border-slate-300 input-bordered bg-primary flex items-center gap-2">
-              <input type={showPassword ? "text" : "password"} name="password" value={userData.password} onChange={handleInput} className="grow" />
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-                className="h-6 w-6 opacity-70"
-                onClick={() => setShowPassword(!showPassword)}
-              >
-                {showPassword ? <FaEyeSlash className="text-xl" /> : <FaEye className="text-xl"/>}
-              </svg>
-            </label>
+                <label className="input border border-slate-300 input-bordered bg-primary flex items-center gap-2">
+                  <input type={showPassword ? "text" : "password"} name="password" value={userData.password} onChange={handleInput} className="grow" />
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                    className="h-6 w-6 opacity-70"
+                    onClick={() => setShowPassword(!showPassword)}
+                  >
+                    {showPassword ? <FaEyeSlash className="text-xl" /> : <FaEye className="text-xl" />}
+                  </svg>
+                </label>
               </div>
               {error && <p className="text-red-500">{error}</p>}
             </div>
-            
+
             <div>
               <button
                 type="none"
